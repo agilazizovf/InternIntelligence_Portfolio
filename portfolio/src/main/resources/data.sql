@@ -7,6 +7,7 @@ CREATE TABLE authorities (
 CREATE TABLE users (
                        id INT AUTO_INCREMENT PRIMARY KEY,
                        username VARCHAR(50) NOT NULL,
+                       email VARCHAR(100) NOT NULL,
                        password VARCHAR(255) NOT NULL
 );
 
@@ -116,10 +117,10 @@ CREATE TABLE certificates (
 insert into authorities(name)
 values ('USER');
 
-insert into users(username, password)
-values ('user1', '$2a$12$uNjYXhfahdmASvxUIDx0ruuTU4Nj66U0ry2NOkm6SLSprrF1ZJhnq'), -- password: 1234
-       ('user2', '$2a$12$uNjYXhfahdmASvxUIDx0ruuTU4Nj66U0ry2NOkm6SLSprrF1ZJhnq'), -- password: 1234
-       ('user3', '$2a$12$uNjYXhfahdmASvxUIDx0ruuTU4Nj66U0ry2NOkm6SLSprrF1ZJhnq'); -- password: 1234
+insert into users(username, email, password)
+values ('user1', 'user1@gmail.com', '$2a$12$uNjYXhfahdmASvxUIDx0ruuTU4Nj66U0ry2NOkm6SLSprrF1ZJhnq'), -- password: 1234
+       ('user2', 'user2@gmail.com', '$2a$12$uNjYXhfahdmASvxUIDx0ruuTU4Nj66U0ry2NOkm6SLSprrF1ZJhnq'), -- password: 1234
+       ('user3', 'user3@gmail.com', '$2a$12$uNjYXhfahdmASvxUIDx0ruuTU4Nj66U0ry2NOkm6SLSprrF1ZJhnq'); -- password: 1234
 
 insert into user_authorities(user_id, authority_name)
 values (1, 'USER'),

@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
         }
         UserEntity user = new UserEntity();
         user.setUsername(request.getUsername());
+        user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
 
         AuthorityEntity authorityEntity = new AuthorityEntity("USER");

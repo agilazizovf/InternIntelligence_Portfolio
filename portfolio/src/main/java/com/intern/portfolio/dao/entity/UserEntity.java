@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.intern.portfolio.dao.entity.AuthorityEntity;
 import com.intern.portfolio.dao.entity.UserDetailsEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,10 @@ public class UserEntity {
     private Long id;
 
     private String username;
+
+    @Email
+    @Column(unique = true)
+    private String email;
 
     @JsonIgnore
     private String password;

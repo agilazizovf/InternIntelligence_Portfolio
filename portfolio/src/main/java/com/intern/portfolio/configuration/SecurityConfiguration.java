@@ -86,7 +86,8 @@ public class SecurityConfiguration {
             "/social-media/**",
             "/languages/**",
             "/certificates/**",
-            "/portfolio/**"
+            "/portfolio/**",
+            "/passwords/**"
     };
 
     static String[] adminUrls = {
