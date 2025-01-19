@@ -84,7 +84,9 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public ResponseEntity<List<ProjectResponse>> getAll() {
-        List<ProjectEntity> projectEntityList = projectRepository.findAll();
+        UserEntity user = getCurrentUser();
+
+        List<ProjectEntity> projectEntityList = projectRepository.findAllProjectsByUserId(user.getId());
 
         List<ProjectResponse> responses = projectEntityList.stream()
                 .map(projectEntity -> modelMapper.map(projectEntity, ProjectResponse.class))

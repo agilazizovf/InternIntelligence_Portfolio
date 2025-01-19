@@ -79,7 +79,14 @@ public class SecurityConfiguration {
             "/h2-console/**",
             "/users/**",
             "/user-details/**",
-            "/projects/**"
+            "/projects/**",
+            "/skills/**",
+            "/educations/**",
+            "/experiences/**",
+            "/social-media/**",
+            "/languages/**",
+            "/certificates/**",
+            "/portfolio/**"
     };
 
     static String[] adminUrls = {

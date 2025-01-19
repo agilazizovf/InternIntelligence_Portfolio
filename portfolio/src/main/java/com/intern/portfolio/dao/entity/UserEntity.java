@@ -38,6 +38,30 @@ public class UserEntity {
     private List<ProjectEntity> projects;
 
     @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<SkillEntity> skills;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<EducationEntity> educations;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<ExperienceEntity> experiences;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<SocialMediaEntity> socialMedias;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<CertificateEntity> certificates;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<LanguageEntity> languages;
+
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "user_authorities",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},

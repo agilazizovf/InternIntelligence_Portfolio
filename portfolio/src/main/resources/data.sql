@@ -53,6 +53,64 @@ CREATE TABLE project_technologies (
                                                     FOREIGN KEY (project_id) REFERENCES projects(id) -- Foreign key to projects table
 );
 
+-- Create the `skills` table
+CREATE TABLE skills (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        name VARCHAR(50),
+                        description VARCHAR(250),
+                        proficiency_level INT CHECK (proficiency_level BETWEEN 1 AND 10),
+                        user_id INT,
+                        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE educations (
+                            id INT AUTO_INCREMENT PRIMARY KEY,
+                            degree VARCHAR(255),
+                            institution VARCHAR(255),
+                            start_year INT,
+                            end_year INT,
+                            grade VARCHAR(50),
+                            user_id INT,
+                            FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE experiences (
+                             id INT AUTO_INCREMENT PRIMARY KEY,
+                             title VARCHAR(255),
+                             company_name VARCHAR(255),
+                             start_date DATE,
+                             end_date DATE,
+                             description TEXT,
+                             user_id INT,
+                             FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE social_media (
+                              id INT AUTO_INCREMENT PRIMARY KEY,
+                              platform_name VARCHAR(255),
+                              profile_url VARCHAR(255),
+                              user_id INT,
+                              FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE languages (
+                           id INT AUTO_INCREMENT PRIMARY KEY,
+                           name VARCHAR(255),
+                           proficiency_level VARCHAR(255),
+                           user_id INT,
+                           FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE certificates (
+                              id INT AUTO_INCREMENT PRIMARY KEY,
+                              name VARCHAR(255),
+                              institution VARCHAR(255),
+                              issue_date DATE,
+                              certificate_url VARCHAR(255),
+                              user_id INT,
+                              FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
 
 
 insert into authorities(name)
@@ -86,3 +144,47 @@ INSERT INTO project_technologies (project_id, technology) VALUES
                                                               (2, 'Python'),
                                                               (2, 'Django'),
                                                               (2, 'PostgreSQL');
+
+-- Insert sample data into `skills` table
+INSERT INTO skills (name, description, proficiency_level, user_id)
+VALUES
+    ('Java Programming', 'Strong knowledge of Java SE and EE', 8, 1),
+    ('Spring Framework', 'Experience with Spring Boot, MVC, and Security', 9, 1),
+    ('Database Management', 'Proficient in MySQL and PostgreSQL', 7, 2);
+
+-- Insert sample data into the educations table
+INSERT INTO educations (degree, institution, start_year, end_year, grade, user_id)
+VALUES
+    ('B.Sc. in Computer Science', 'Massachusetts Institute of Technology', 2015, 2019, 'A', 1),
+    ('M.Sc. in Artificial Intelligence', 'Stanford University', 2020, 2022, 'A+', 1),
+    ('B.A. in Economics', 'Harvard University', 2014, 2018, 'B', 2);
+
+-- Insert sample experiences
+INSERT INTO experiences (title, company_name, start_date, end_date, description, user_id)
+VALUES
+    ('Software Engineer Intern', 'TechCorp', '2022-06-01', '2022-08-31', 'Developed REST APIs using Spring Boot.', 1),
+    ('Backend Developer', 'Innovatech Solutions', '2023-01-01', '2023-12-31', 'Worked on database optimization and microservices architecture.', 1),
+    ('Frontend Developer', 'Designify', '2021-03-01', '2022-05-31', 'Implemented responsive web designs using ReactJS.', 2);
+
+-- Insert sample data into the social_media table
+INSERT INTO social_media (platform_name, profile_url, user_id)
+VALUES
+    ('LinkedIn', 'https://www.linkedin.com/in/johndoe', 1),
+    ('Facebook', 'https://www.facebook.com/johndoe', 1),
+    ('Twitter', 'https://twitter.com/john_doe123', 1),
+    ('Instagram', 'https://www.instagram.com/johndoe_insta', 2);
+
+INSERT INTO languages (name, proficiency_level, user_id)
+VALUES
+    ('English', 'Advanced', 1),
+    ('Spanish', 'Intermediate', 1),
+    ('German', 'Basic', 2),
+    ('French', 'Advanced', 2);
+
+INSERT INTO certificates (name, institution, issue_date, certificate_url, user_id)
+VALUES
+    ('Java Developer Certification', 'Oracle', '2023-05-15', 'https://www.oracle.com/certification', 1),
+    ('AWS Certified Solutions Architect', 'Amazon', '2022-10-20', 'https://aws.amazon.com/certification', 2),
+    ('Data Science Certificate', 'Coursera', '2022-08-30', 'https://www.coursera.org/certificates', 2);
+
+

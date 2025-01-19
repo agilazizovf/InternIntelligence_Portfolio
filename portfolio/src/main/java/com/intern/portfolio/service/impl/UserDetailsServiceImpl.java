@@ -92,7 +92,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public ResponseEntity<List<UserDetailsResponse>> getAll() {
-        List<UserDetailsEntity> userDetailsList = userDetailsRepository.findAll();
+        UserEntity user = getCurrentUser();
+
+        List<UserDetailsEntity> userDetailsList = userDetailsRepository.findAllUserDetailsByUserId(user.getId());
 
         List<UserDetailsResponse> responses = userDetailsList.stream()
                 .map(userDetails -> modelMapper.map(userDetails, UserDetailsResponse.class))
